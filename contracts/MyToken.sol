@@ -14,6 +14,7 @@ contract MyToken is
 {
     function initialize() public initializer {
         __ERC20_init("MyToken", "MTK");
+        __Ownable_init();
         _mint(msg.sender, 10000000 * 10**decimals());
     }
 
@@ -22,4 +23,10 @@ contract MyToken is
         override
         onlyOwner
     {}
+}
+
+contract MyToken2 is MyToken {
+    function getVersion() external pure returns (string memory) {
+        return "MyTokenV2";
+    }
 }
